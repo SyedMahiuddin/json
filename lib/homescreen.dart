@@ -21,15 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
   [{"id":4,"title":"Lollipop"},{"id":5,"title":"Pie"},{"id":6,"title":"Oreo"},{"id":7,"title":"Nougat"}]]
   ''';
 
+  String input2Map='''{"0":{"id":1,"title":"Gingerbread"},"1":{"id":2,"title":"Jellybean"},"3":{"id":3,"title":"KitKat"}},''';
+  String input2List='''{"0":{"id":8,"title":"Froyo"},"2":{"id":9,"title":"Éclair"},"3":{"id":10,"title":"Donut"}},
+  [{"id":4,"title":"Lollipop"},{"id":5,"title":"Pie"},{"id":6,"title":"Oreo"},{"id":7,"title":"Nougat"}]]''';
+
   List<AndroidVersion?> result1 = [];
   List<AndroidVersion?> result2 = [];
+
+  List<AndroidVersion?> result21=[];
+  List<AndroidVersion?> result22=[];
 
   bool showOne=true;
   @override
   void initState() {
      result1 = parseInputString(inputString1);
-     result2 = parseInputString(inputString2);
-
+     result21 = parseInputString(input2Map);
+     result22 = parseInputString(input2List);
+  result2.addAll(result21);
+  result2.addAll(result22);
     super.initState();
   }
   @override
@@ -162,7 +171,6 @@ class _HomeScreenState extends State<HomeScreen> {
           String integerStr = match.group(1)!;
           int? foundInteger = int.tryParse(integerStr);
           if (foundInteger != null) {
-
             print('Found integer: $foundInteger');
             lastNumber=foundInteger;
             if(lastNumber-firstNumber==2)
